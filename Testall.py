@@ -354,5 +354,34 @@ class TestIteration(unittest.TestCase):
     def tryIndex(obj, index):
         return obj[index]
 
+class MyOwnTests(unittest.TestCase):
+
+    def setUp(self):
+        self.b = Bruch(6, 2)
+        self.b2 = Bruch(10, 2)
+        pass
+
+    def tearDown(self):
+        del self.b, self.b2
+        pass
+
+    def testplus(self):
+        self.e = self.b + self.b2
+        assert(float(self.e) == 8)
+
+    def testminus(self):
+        self.e = self.b - self.b2
+        assert(float(self.e) == -2)
+
+    def testmult(self):
+        self.e = self.b * self.b2
+        assert(float(self.e) == 15)
+
+    def testDiv(self):
+        self.e = (self.b2+1) / self.b
+        assert(float(self.e) == 2)
+
+    def testDiv0(self):
+        self.assertRaises(ZeroDivisionError, self.b2.__truediv__, 0)
 if __name__ == "__main__":
     unittest.main()
